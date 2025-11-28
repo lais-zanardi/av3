@@ -1,0 +1,10 @@
+model Teste {
+  id            String         @id @default(uuid())
+  tipo          TipoTeste
+  resultado     ResultadoTeste
+
+  aeronaveId    String
+  aeronave      Aeronave       @relation(fields: [aeronaveId], references: [id])
+
+  @@map("testes")
+}

@@ -1,0 +1,15 @@
+model Aeronave {
+  id            String       @id @default(uuid())
+  codigo        String       @unique @db.VarChar(20)
+  modelo        String       @db.VarChar(50)
+  tipo          TipoAeronave
+  capacidade    Int
+  alcance       Int
+
+  pecas         Peca[]
+  etapas        Etapa[]
+  testes        Teste[]
+  relatorio     Relatorio?
+
+  @@map("aeronaves")
+}

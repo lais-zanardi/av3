@@ -1,0 +1,13 @@
+
+model Funcionario {
+  id              String         @id @default(uuid())
+  nome            String         @db.VarChar(100)
+  telefone        String         @db.VarChar(20)
+  endereco        String         @db.VarChar(200)
+  usuario         String         @unique @db.VarChar(50)
+  senha           String         @db.VarChar(255)
+  nivelPermissao  NivelPermissao
+  etapas          Etapa[]        @relation("FuncionarioEtapas")
+
+  @@map("funcionarios")
+}

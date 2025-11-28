@@ -1,0 +1,33 @@
+{
+  "name": "av3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "prisma generate && prisma migrate reset --force && prisma migrate dev && tsc && node ./src/js/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lais-zanardi/av3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lais-zanardi/av3/issues"
+  },
+  "homepage": "https://github.com/lais-zanardi/av3#readme",
+  "devDependencies": {
+    "@prisma/client": "^7.0.1",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.10.1",
+    "dotenv": "^17.2.3",
+    "prisma": "^7.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.5",
+    "express": "^5.1.0"
+  }
+}

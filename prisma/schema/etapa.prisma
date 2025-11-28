@@ -1,0 +1,12 @@
+model Etapa {
+  id              String         @id @default(uuid())
+  nome            String         @db.VarChar(50)
+  prazo           String         @db.VarChar(50) 
+  status          StatusEtapa
+  aeronaveId      String
+  aeronave        Aeronave       @relation(fields: [aeronaveId], references: [id])
+  funcionarios    Funcionario[]  @relation("FuncionarioEtapas")
+  pecas           Peca[]         @relation("EtapaPecas")
+
+  @@map("etapas")
+}
