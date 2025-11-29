@@ -13,7 +13,7 @@ class Logger {
     console.error(this.formatMessage('ERROR', message), error);
   }
 
-  security(message: string, meta?: { usuario?: string; ip?: string; acao: string }) {
+  security(message: string, meta?: { usuario?: string; id?: string; ip?: string; acao: string }) {
     console.warn(this.formatMessage('ZR-SECURITY', message, meta));
   }
 }
