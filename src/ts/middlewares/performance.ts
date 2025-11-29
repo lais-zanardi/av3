@@ -1,22 +1,29 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from "express";
 
 export const measureProcessingTime = (req: Request, res: Response, next: NextFunction) => {
   const start = process.hrtime.bigint();
+
+  // Override seguro do .end — garante setHeader ANTES do envio
   const originalEnd = res.end;
 
   // @ts-ignore
   res.end = function (...args: any[]) {
     const end = process.hrtime.bigint();
-    const durationNs = end - start;
-    const durationMs = Number(durationNs) / 1000000;
+    const durationMs = Number(end - start) / 1_000_000;
 
+    // Só define header antes do envio
     if (!res.headersSent) {
-      res.setHeader('X-Processing-Time-Ms', durationMs.toFixed(2));
+      try {
+        res.setHeader("X-Processing-Time-Ms", durationMs.toFixed(2));
+      } catch (_) {
+        // ignora, apenas por segurança
+      }
+    }
 
-      console.log(`[PERF] ${req.method} ${req.originalUrl}: ${durationMs.toFixed(2)}ms`);
-      return originalEnd.apply(res, args as any);
-    };
+    console.log(`[PERF] ${req.method} ${req.originalUrl}: ${durationMs.toFixed(2)}ms`);
 
-    next();
+    return originalEnd.apply(res, args as any);
   };
+
+  next();
 };
