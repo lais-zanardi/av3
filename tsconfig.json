@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2015", /*'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', or 'ESNEXT'. */
-    "module": "CommonJS", /*'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+    "target": "ES2015",
+    "module": "CommonJS",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "src/js/",
+    "outDir": "src/js",
+    "rootDir": "src/ts",
     "moduleResolution": "node",
     "noImplicitAny": false
   },
-  "include": [
-    "src/ts/**/*"
-, "seed.ts"  ]
+  "include": ["src/ts/**/*"]
+
 }
