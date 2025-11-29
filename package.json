@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "prisma generate && prisma migrate reset --force && prisma migrate dev && tsc && node ./src/js/index.js"
-  },
+"scripts": {
+  "seed": "ts-node seed.ts",
+  "dev": "prisma generate && prisma migrate reset --force && prisma migrate dev && npm run seed && tsc && node ./src/js/index.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lais-zanardi/av3.git"
@@ -31,6 +32,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
+    "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "express": "^5.1.0",
