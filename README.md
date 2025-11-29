@@ -67,12 +67,13 @@ Antes de começar, você precisa ter instalado em sua máquina:
     npm run dev
 ```
 
-    *Este comando irá:*
 
-      * Gerar o cliente Prisma.
-      * Resetar e aplicar as migrações no banco.
-      * Rodar o `seed` (popular o banco com dados iniciais).
-      * Iniciar o servidor.
+*Este comando irá:*
+
+* Gerar o cliente Prisma.
+* Resetar e aplicar as migrações no banco.
+* Rodar o `seed` (popular o banco com dados iniciais).
+* Iniciar o servidor.
 
 ## 👤 Acesso Inicial (Seed)
 
