@@ -1,8 +1,0 @@
-model Relatorio {
-  id            String         @id @default(uuid())
-  dataCriacao   DateTime       @default(now())
-  aeronaveId    String         @unique
-  aeronave      Aeronave       @relation(fields: [aeronaveId], references: [id])
-
-  @@map("relatorios")
-}

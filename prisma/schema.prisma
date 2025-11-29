@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 enum TipoAeronave {
@@ -43,4 +44,81 @@ enum TipoTeste {
 enum ResultadoTeste {
   APROVADO
   REPROVADO
+}
+
+model Aeronave {
+  id            String       @id @default(uuid())
+  codigo        String       @unique @db.VarChar(20)
+  modelo        String       @db.VarChar(50)
+  tipo          TipoAeronave
+  capacidade    Int
+  alcance       Int
+
+  pecas         Peca[]
+  etapas        Etapa[]
+  testes        Teste[]
+  relatorio     Relatorio?
+
+  @@map("aeronaves")
+}
+
+
+model Peca {
+  id            String     @id @default(uuid())
+  nome          String     @db.VarChar(50)
+  tipo          TipoPeca
+  fornecedor    String     @db.VarChar(100)
+  statusPeca    StatusPeca 
+  aeronaveId    String
+  aeronave      Aeronave   @relation(fields: [aeronaveId], references: [id])
+  etapas        Etapa[]    @relation("EtapaPecas")
+
+  @@map("pecas")
+}
+
+
+model Etapa {
+  id              String         @id @default(uuid())
+  nome            String         @db.VarChar(50)
+  prazo           String         @db.VarChar(50) 
+  status          StatusEtapa
+  aeronaveId      String
+  aeronave        Aeronave       @relation(fields: [aeronaveId], references: [id])
+  funcionarios    Funcionario[]  @relation("FuncionarioEtapas")
+  pecas           Peca[]         @relation("EtapaPecas")
+
+  @@map("etapas")
+}
+
+model Funcionario {
+  id              String         @id @default(uuid())
+  nome            String         @db.VarChar(100)
+  telefone        String         @db.VarChar(20)
+  endereco        String         @db.VarChar(200)
+  usuario         String         @unique @db.VarChar(50)
+  senha           String         @db.VarChar(255)
+  nivelPermissao  NivelPermissao
+  etapas          Etapa[]        @relation("FuncionarioEtapas")
+
+  @@map("funcionarios")
+}
+
+model Teste {
+  id            String         @id @default(uuid())
+  tipo          TipoTeste
+  resultado     ResultadoTeste
+
+  aeronaveId    String
+  aeronave      Aeronave       @relation(fields: [aeronaveId], references: [id])
+
+  @@map("testes")
+}
+
+model Relatorio {
+  id            String         @id @default(uuid())
+  dataCriacao   DateTime       @default(now())
+  aeronaveId    String         @unique
+  aeronave      Aeronave       @relation(fields: [aeronaveId], references: [id])
+
+  @@map("relatorios")
 }
