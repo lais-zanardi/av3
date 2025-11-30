@@ -127,5 +127,4 @@ Após a execução, os seguintes arquivos estarão disponíveis na raiz do proje
 | **`grafico_latencia.png`** | Estimativa de latência de rede. | ![Latência de Rede](assets/grafico_latencia.png) |
 
 -----
-
-Desenvolvido como parte da avaliação acadêmica AV3.
+_Desenvolvido por Laís Zanardi Inocêncio 🌼_
